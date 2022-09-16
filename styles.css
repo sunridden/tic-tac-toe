@@ -34,10 +34,14 @@ body {
 }
 
 #gameboard .square {
-    background-color: black;
+    background-color: white;
     border: 2px solid gray;
     border-left: none;
     border-bottom: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
 }
 
 #gameboard .left {
