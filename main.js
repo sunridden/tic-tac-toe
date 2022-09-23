@@ -19,6 +19,38 @@ const gameController = (() => {
         })
     }
 
+    const trackInput = () => {
+        restartGame();
+        
+        const squares = document.querySelectorAll(".square");
+        squares.forEach(square => {
+            square.addEventListener('click', btnInput)
+        })
+    }
+
+    function btnInput()  {
+        
+        //indexes the clicked square and updates gameboard array
+        let currentTurn = changeTurn();
+        let squarePosition = this.className.split(" ")[0];
+        gameBoard.gameboard.splice(squarePosition, 1, currentTurn);
+        this.textContent = currentTurn;
+        
+        //locks the tile after spot is taken
+        this.removeEventListener('click', btnInput);
+    }
+
+    const restartGame = () => {
+        const squares = document.querySelectorAll(".square");
+        squares.forEach(square => {
+            square.textContent = "";
+            square.removeEventListener('click', btnInput);
+
+        })
+       
+        gameBoard.gameboard.fill(0);
+    }
+    
     //initializes player1 to start first
     let turn = 1;
 
@@ -47,32 +79,16 @@ const gameController = (() => {
     return {
         startGame, changeTurn
     };
-
-
 })();
 
 const gameBoard = (() => {
 
-    const gameboard = [];
+    const gameboard = [0, 0, 0, 0, 0, 0, 0, 0];
 
     return {
         gameboard
     };
 })();
-
-function trackInput() {
-    const squares = document.querySelectorAll(".square");
-    squares.forEach(square => {
-        square.addEventListener('click', () => {
-            
-            let currentTurn = gameController.changeTurn();
-            //finds the class name of the square that was selected
-            let squarePosition = square.className.split(" ")[0];
-            gameBoard.gameboard.splice(squarePosition, 1, currentTurn);
-            square.textContent = currentTurn;
-        })
-    })
-}
 
 
 
