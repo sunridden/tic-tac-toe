@@ -14,13 +14,11 @@ const gameController = (() => {
 
     const squares = document.querySelectorAll(".square");
 
-    const startGame = () => {
-        const restartBtn = document.getElementById("restart-btn");
-        restartBtn.addEventListener('click', () => {
-            trackInput();
-        })
-    }
-
+    const restartBtn = document.getElementById("restart-btn");
+    restartBtn.addEventListener('click', () => {
+        trackInput();
+    })
+    
     const trackInput = () => {
         restartGame();
 
@@ -108,7 +106,7 @@ const gameController = (() => {
     }
 
     return {
-        startGame, changeTurn, isGameOver
+        changeTurn, isGameOver
     };
 })();
 
@@ -215,3 +213,4 @@ function displayWinner(winner) {
     }
 }
 
+gameController.startGame();
