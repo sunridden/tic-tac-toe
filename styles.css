@@ -19,6 +19,12 @@ body {
 
 #header-title {
     font-size: 4rem;
+    color: #FF87B2;
+    text-shadow: 5px 5px #B270A2;
+}
+
+#winner {
+    font-size: 1.25rem;
 }
 
 #gameboard {
@@ -29,7 +35,7 @@ body {
     height: 500px;
     margin: auto;
     margin-top: 25px;
-    border: 30px solid #EAE3D2;
+    border: 30px solid #FF87B2;
     border-radius: 15px;
 }
 
@@ -59,12 +65,18 @@ body {
 }
 
 #restart-btn {
-    background-color: black;
+    background-color: #FF87B2;
     color: white;
     border: thin solid #F3E9DD;
     border-radius: 10px;
     padding: 15px 40px;
     font-size: 1.5rem;
+}
+
+#restart-btn:hover {
+    background-color: white;
+    color: #FF87B2;
+    transition: 0.4s;
 }
 
 #footer {
