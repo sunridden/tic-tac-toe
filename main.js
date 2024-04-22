@@ -77,7 +77,7 @@ const gameController = (() => {
         displayTurn();
         changeTurn();
 
-        let squarePosition = this.className.split(" ")[0];
+        let squarePosition = this.id;
         gameBoard.updateBoard(squarePosition, currentTurn);
 
         this.textContent = currentTurn;
