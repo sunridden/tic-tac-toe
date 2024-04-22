@@ -28,11 +28,55 @@ const gameController = (() => {
         })
     }
 
+    function botInput() {
+        displayTurn();
+        let legalMove = false;
+
+        let squarePosition;
+
+        while (legalMove === false) {
+            squarePosition = (Math.round(Math.random() * 8));
+
+            // checks if chosen square is a legal move
+            let currentSquare = document.getElementById(squarePosition);
+            if (currentSquare.textContent === '') {
+
+                //locks the tile after spot is taken
+                currentSquare.removeEventListener('click', btnInput);
+                
+                currentSquare.textContent = player2.piece;
+                legalMove = true;
+            }
+        }
+
+        gameBoard.updateBoard(squarePosition, player2.piece);
+
+        changeTurn();
+        displayTurn();
+
+        let winner = findWinner(squarePosition, player2.piece);
+
+        if (winner.length != 0 || isGameOver() === true) {
+            //makes a call that the game is over
+            squares.forEach(square => {
+                square.removeEventListener('click', btnInput);
+            })
+            if (winner.length == 0 && isGameOver() === true) {
+                displayWinner("Tie");
+            } else {
+                displayWinner(player2.piece);
+            }
+        } 
+
+        return;
+    }
+
     function btnInput()  {
-        
-        let currentTurn = changeTurn();
-        displayTurn(turn);
-    
+
+        let currentTurn = player1.piece;
+        displayTurn();
+        changeTurn();
+
         let squarePosition = this.className.split(" ")[0];
         gameBoard.updateBoard(squarePosition, currentTurn);
 
@@ -40,6 +84,8 @@ const gameController = (() => {
         
         //locks the tile after spot is taken
         this.removeEventListener('click', btnInput);
+
+        displayTurn();
 
         let winner = findWinner(squarePosition, currentTurn);
 
@@ -53,6 +99,8 @@ const gameController = (() => {
             } else {
                 displayWinner(currentTurn);
             }
+        } else {
+            botInput();
         }
     }
 
@@ -154,7 +202,7 @@ const gameController = (() => {
     }
 
     return {
-        changeTurn, isGameOver, findWinner
+        isGameOver, findWinner
     };
 })();
 
