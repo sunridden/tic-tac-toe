@@ -16,16 +16,24 @@ const gameController = (() => {
     const displayText = document.getElementById("winner");
     const restartBtn = document.getElementById("restart-btn");
 
+    //initializes a random player to start first
+    let turn = Math.round((Math.random() * 1) + 1);
+
     restartBtn.addEventListener('click', () => {
         trackInput();
     })
     
     const trackInput = () => {
         restartGame();
-
+        
         squares.forEach(square => {
             square.addEventListener('click', btnInput)
         })
+
+        // turn 2 represents the bot player
+        if (turn === 2) {
+            botInput();
+        }
     }
 
     function botInput() {
@@ -114,9 +122,6 @@ const gameController = (() => {
         
         gameBoard.gameboard.fill(0);
     }
-    
-    //initializes player1 to start first
-    let turn = 1;
     
     const changeTurn = () => {
         
