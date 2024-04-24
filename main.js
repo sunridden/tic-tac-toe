@@ -169,7 +169,7 @@ const gameController = (() => {
             }
         })
         
-        // filters for same piece a "1" or "2" being in every location of a winningCombination
+        // filters for same piece an "X" or "O" being in every location of a winningCombination
         winner = winner.filter((arr) => {
             let winStatus = true;
             arr.forEach(index => {
@@ -225,9 +225,3 @@ const gameBoard = (() => {
         gameboard, updateBoard
     };
 })();
-
-
-
-
-
-
