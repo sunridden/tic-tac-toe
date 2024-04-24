@@ -160,6 +160,7 @@ const gameController = (() => {
         [2, 4, 6], //disagonal2
         ]
 
+        // filters for winningCombinations with last user/bot input location
         let winner = winningCombinations.filter((arr) => {
             if (arr.includes(squareIndex)) {
                 return true;
@@ -168,6 +169,7 @@ const gameController = (() => {
             }
         })
         
+        // filters for same piece a "1" or "2" being in every location of a winningCombination
         winner = winner.filter((arr) => {
             let winStatus = true;
             arr.forEach(index => {
