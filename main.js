@@ -62,7 +62,7 @@ const gameController = (() => {
         changeTurn();
         displayTurn();
 
-        let winner = findWinner(squarePosition, player2.piece);
+        let winner = findWinner(squarePosition, gameBoard.gameboard, player2.piece);
 
         if (winner.length != 0 || isGameOver() === true) {
             //makes a call that the game is over
@@ -95,7 +95,7 @@ const gameController = (() => {
 
         displayTurn();
 
-        let winner = findWinner(squarePosition, currentTurn);
+        let winner = findWinner(squarePosition, gameBoard.gameboard, currentTurn);
 
         if (winner.length != 0 || isGameOver() === true) {
             //makes a call that the game is over
@@ -145,7 +145,7 @@ const gameController = (() => {
         }
     }
 
-    const findWinner = (squareIndex, currentTurn) => {
+    const findWinner = (squareIndex, gamePieces, currentTurn) => {
 
         squareIndex = Number(squareIndex);
     
@@ -173,7 +173,7 @@ const gameController = (() => {
         winner = winner.filter((arr) => {
             let winStatus = true;
             arr.forEach(index => {
-                if (gameBoard.gameboard[index] != currentTurn) {
+                if (gamePieces[index] != currentTurn) {
                     winStatus = false;
                 }
             })
